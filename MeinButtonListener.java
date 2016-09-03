@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
  * Created by user Schal (Lukas Schalk).
  */
 
+//Klasse zur Überwachung von gedrückten Karten/Buttons
+
 public class MeinButtonListener implements ActionListener {
     Icon normal = new ImageIcon(getClass().getResource("img/spielkarteNORMAL.png"));
     Icon wolke = new ImageIcon(getClass().getResource("img/spielkarteWOLKE.png"));
@@ -18,6 +20,9 @@ public class MeinButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        //Hier wird geregelt, ob man eine Karte tauschen pder behalten will, also das nach oben und unten verschieben der Karte
+        
         if (MeinFrame.isSelectable) {
             if (e.getSource() == MeinFrame.playerBtn1 && !MeinFrame.isBtn1Selected) {
                 MeinFrame.playerBtn1.setBounds(100, 330, 125, 181);
@@ -59,7 +64,11 @@ public class MeinButtonListener implements ActionListener {
                 MeinFrame.isBtn5Selected = false;
             }
         }
-
+        
+        /*Hier wird abgefragt ob das Spiel gerade am Start ist oder am Ende wenn man den Hauptbutton drückt, und dann 
+        * entweder das Spiel gestartet oder der Gewinner festgestellt und die Karten des Computers aufgelöst
+        */
+        
         if (e.getSource() == MeinFrame.playButton && !MeinFrame.gameStarted && MeinFrame.playButton.getText().equals("Los!")) {
             MeinFrame.playButton.setText("Karten werden ausgegeben");
             MeinFrame.gameStarted = true;
@@ -80,7 +89,8 @@ public class MeinButtonListener implements ActionListener {
             MeinFrame.computerSiegeLabel.setText("Computersiege: " + MeinFrame.computerSiege);
             MeinFrame.playButton.setText(winner + "  [Klicken für ein neues Spiel!]");
 
-
+            //Die Karten des Computers werden aufgedeckt
+            
             if (MeinFrame.computerCards[0] == 1) {
                 MeinFrame.computerBtn1.setIcon(wolke);
             } else if (MeinFrame.computerCards[0] == 2) {
@@ -154,6 +164,11 @@ public class MeinButtonListener implements ActionListener {
             } else if (MeinFrame.computerCards[4] == 6) {
                 MeinFrame.computerBtn5.setIcon(stern);
             }
+            
+            /*Hier wird geschaut, ob Karten zum Austausch gewählt sind und werden dann ausgetauscht. Dann wird das Spiel in
+            * die Auflösen- (quasi End-) Phase gebracht
+            */
+            
         } else if (e.getSource() == MeinFrame.playButton && MeinFrame.playButton.getText().equals("Karten tauschen")) {
             MeinFrame.playButton.setText("Auflösen");
             if (MeinFrame.isBtn1Selected) {
@@ -260,6 +275,11 @@ public class MeinButtonListener implements ActionListener {
                     MeinFrame.playerBtn5.setIcon(stern);
                 }
             }
+            
+            /*Hier wird geschaut, ob alles aufgelöst wurde und dann wird das Spielfeld zurückgesetzt und kann wieder 
+            * mit dem Los! Button von neuem gestartet werden
+            */
+            
         } else if (e.getSource() == MeinFrame.playButton && !MeinFrame.playButton.getText().equals("Karten tauschen") && !MeinFrame.playButton.getText().equals("Los!") && !MeinFrame.playButton.getText().equals("Karten behalten") && !MeinFrame.playButton.getText().equals("Auflösen")) {
             MeinFrame.playButton.setText("Los!");
 
