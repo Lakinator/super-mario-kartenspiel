@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class MeinFrame extends JFrame {
 
-    public static final double VERSION = 1.2;
+    public static final double VERSION = 1.3;
 
     JFrame jf = new JFrame();
     public static boolean isBtn1Selected = false, isBtn2Selected = false, isBtn3Selected = false, isBtn4Selected = false, isBtn5Selected = false, gameStarted = false;
@@ -30,6 +30,11 @@ public class MeinFrame extends JFrame {
     public static int playerSiege = 0, computerSiege = 0;
     public static int[] playerCards = new int[5];
     public static int[] computerCards = new int[5];
+
+    //Temporäre Variablen
+    int unnötigeVariable = 0;
+    int score = 0, wolken = 0, pilze = 0, blumen = 0, luigis = 0, marios = 0, sterne = 0;
+    boolean change1 = true, change2 = true, change3 = true, change4 = true, change5 = true;
 
     public MeinFrame() {
         jf.setLayout(null);
@@ -117,6 +122,7 @@ public class MeinFrame extends JFrame {
 
         jf.setVisible(true);
 
+        //Hauptschleife des Spiels
 
         while (true) {
             try {
@@ -137,10 +143,262 @@ public class MeinFrame extends JFrame {
                 playButton.setText("Karten behalten");
             }
 
-            if (playButton.getText().equals("Auflösen") || playButton.getText().equals("Karten behalten")) {
-                System.out.println("PlayerCards Score: " + currentScore(playerCards));
+            //Computer KI
+
+            if (playButton.getText().equals("Der Computer wählt...")) {
+                unnötigeVariable = currentScore(computerCards);
+                change1 = true;
+                change2 = true;
+                change3 = true;
+                change4 = true;
+                change5 = true;
+
+                System.out.println(currentScore(computerCards)); //Debug
+
+                if (wolken == 2) {
+                    for (int i = 0; i < 5; i++) {
+                        if (computerCards[i] == 1) {
+                            System.out.println("An Stelle " + i + " ist eine Wolke");
+                            switch (i) {
+                                case 0:
+                                    change1 = false;
+                                    break;
+                                case 1:
+                                    change2 = false;
+                                    break;
+                                case 2:
+                                    change3 = false;
+                                    break;
+                                case 3:
+                                    change4 = false;
+                                    break;
+                                case 4:
+                                    change5 = false;
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                if (pilze == 2) {
+                    for (int i = 0; i < 5; i++) {
+                        if (computerCards[i] == 2) {
+                            System.out.println("An Stelle " + i + " ist ein Pilz");
+                            switch (i) {
+                                case 0:
+                                    change1 = false;
+                                    break;
+                                case 1:
+                                    change2 = false;
+                                    break;
+                                case 2:
+                                    change3 = false;
+                                    break;
+                                case 3:
+                                    change4 = false;
+                                    break;
+                                case 4:
+                                    change5 = false;
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                if (blumen == 2) {
+                    for (int i = 0; i < 5; i++) {
+                        if (computerCards[i] == 3) {
+                            System.out.println("An Stelle " + i + " ist eine Blume");
+                            switch (i) {
+                                case 0:
+                                    change1 = false;
+                                    break;
+                                case 1:
+                                    change2 = false;
+                                    break;
+                                case 2:
+                                    change3 = false;
+                                    break;
+                                case 3:
+                                    change4 = false;
+                                    break;
+                                case 4:
+                                    change5 = false;
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                if (luigis == 2) {
+                    for (int i = 0; i < 5; i++) {
+                        if (computerCards[i] == 4) {
+                            System.out.println("An Stelle " + i + " ist ein Luigi");
+                            switch (i) {
+                                case 0:
+                                    change1 = false;
+                                    break;
+                                case 1:
+                                    change2 = false;
+                                    break;
+                                case 2:
+                                    change3 = false;
+                                    break;
+                                case 3:
+                                    change4 = false;
+                                    break;
+                                case 4:
+                                    change5 = false;
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                if (marios == 2) {
+                    for (int i = 0; i < 5; i++) {
+                        if (computerCards[i] == 5) {
+                            System.out.println("An Stelle " + i + " ist ein Mario");
+                            switch (i) {
+                                case 0:
+                                    change1 = false;
+                                    break;
+                                case 1:
+                                    change2 = false;
+                                    break;
+                                case 2:
+                                    change3 = false;
+                                    break;
+                                case 3:
+                                    change4 = false;
+                                    break;
+                                case 4:
+                                    change5 = false;
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                if (sterne == 2) {
+                    for (int i = 0; i < 5; i++) {
+                        if (computerCards[i] == 6) {
+                            System.out.println("An Stelle " + i + " ist ein Stern");
+                            switch (i) {
+                                case 0:
+                                    change1 = false;
+                                    break;
+                                case 1:
+                                    change2 = false;
+                                    break;
+                                case 2:
+                                    change3 = false;
+                                    break;
+                                case 3:
+                                    change4 = false;
+                                    break;
+                                case 4:
+                                    change5 = false;
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if (change1) {
+                    computerCards[0] = randomCard();
+                    System.out.println("Slot 1");
+
+                    computerBtn1.setBounds(100, 25, 125, 181);
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    computerBtn1.setBounds(100, 50, 125, 181);
+
+                }
+                if (change2) {
+                    computerCards[1] = randomCard();
+                    System.out.println("Slot 2");
+
+                    computerBtn2.setBounds(250, 25, 125, 181);
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    computerBtn2.setBounds(250, 50, 125, 181);
+
+                }
+                if (change3) {
+                    computerCards[2] = randomCard();
+                    System.out.println("Slot 3");
+
+                    computerBtn3.setBounds(400, 25, 125, 181);
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    computerBtn3.setBounds(400, 50, 125, 181);
+
+                }
+                if (change4) {
+                    computerCards[3] = randomCard();
+                    System.out.println("Slot 4");
+
+                    computerBtn4.setBounds(550, 25, 125, 181);
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    computerBtn4.setBounds(550, 50, 125, 181);
+
+                }
+                if (change5) {
+                    computerCards[4] = randomCard();
+                    System.out.println("Slot 5");
+
+                    computerBtn5.setBounds(700, 25, 125, 181);
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    computerBtn5.setBounds(700, 50, 125, 181);
+
+                }
+
+                System.out.println(currentScore(computerCards)); //Debug
+
+                playButton.setEnabled(true);
+                playButton.setText("Auflösen");
+            }
+
+            //Der Score wird gesetzt
+
+            if (playButton.getText().equals("Auflösen")) {
+                System.out.println("PlayerCards Score: " + currentScore(playerCards)); //Debug
                 playerScore = currentScore(playerCards);
-                System.out.println("ComputerCards Score: " + currentScore(computerCards));
+                System.out.println("ComputerCards Score: " + currentScore(computerCards)); //Debug
                 computerScore = currentScore(computerCards);
             }
 
@@ -292,13 +550,13 @@ public class MeinFrame extends JFrame {
     }
 
     public int currentScore(int[] cards) {
-        int score = 0;
-        int wolken = 0;
-        int pilze = 0;
-        int blumen = 0;
-        int luigis = 0;
-        int marios = 0;
-        int sterne = 0;
+        score = 0;
+        wolken = 0;
+        pilze = 0;
+        blumen = 0;
+        luigis = 0;
+        marios = 0;
+        sterne = 0;
 
         for (int i = 0; i < 5; i++) {
             switch (cards[i]) {
