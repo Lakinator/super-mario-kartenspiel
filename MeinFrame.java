@@ -8,15 +8,20 @@ import java.util.Random;
 
 public class MeinFrame extends JFrame {
 
-    public static final double VERSION = 1.3;
+    public static final double VERSION = 1.4;
 
     JFrame jf = new JFrame();
     public static boolean isBtn1Selected = false, isBtn2Selected = false, isBtn3Selected = false, isBtn4Selected = false, isBtn5Selected = false, gameStarted = false;
     public static boolean isSelectable = false;
+    public static boolean coinAnimationWin = false, coinAnimationLoose = false, coinAusgabe = true;
     public static JButton playerBtn1, playerBtn2, playerBtn3, playerBtn4, playerBtn5;
     public static JButton computerBtn1, computerBtn2, computerBtn3, computerBtn4, computerBtn5;
     public static JButton playButton;
     public static JLabel playerSiegeLabel, computerSiegeLabel;
+    public static JButton btnErhöhen;
+    public static JLabel currentCoinLabel, gettedCoinsLabel;
+    JLabel drawLabel;
+    JLabel helpLabel1, helpLabel2, helpLabel3, helpLabel4, helpLabel5, helpLabel6, helpLabel7;
     JLabel version;
     Icon normal = new ImageIcon(getClass().getResource("img/spielkarteNORMAL.png"));
     Icon wolke = new ImageIcon(getClass().getResource("img/spielkarteWOLKE.png"));
@@ -26,13 +31,16 @@ public class MeinFrame extends JFrame {
     Icon mario = new ImageIcon(getClass().getResource("img/spielkarteMARIO.png"));
     Icon stern = new ImageIcon(getClass().getResource("img/spielkarteSTERN.png"));
 
+    public static String winner;
+    public static int currentCoins = 9;
+    public static int gesetzteCoins = 1;
     public static int playerScore = 0, computerScore = 0;
     public static int playerSiege = 0, computerSiege = 0;
     public static int[] playerCards = new int[5];
     public static int[] computerCards = new int[5];
 
     //Temporäre Variablen
-    int unnötigeVariable = 0;
+    int setCurrentCards = 0;
     int score = 0, wolken = 0, pilze = 0, blumen = 0, luigis = 0, marios = 0, sterne = 0;
     boolean change1 = true, change2 = true, change3 = true, change4 = true, change5 = true;
 
@@ -56,6 +64,45 @@ public class MeinFrame extends JFrame {
         computerSiegeLabel = new JLabel("Computersiege: " + computerSiege);
         computerSiegeLabel.setBounds(110, 250, 200, 20);
         jf.add(computerSiegeLabel);
+
+        btnErhöhen = new JButton("Erhöhen!");
+        btnErhöhen.setBounds(5, 350, 90, 50);
+        btnErhöhen.addActionListener(new MeinButtonListener());
+        jf.add(btnErhöhen);
+
+        currentCoinLabel = new JLabel("Coins: " + currentCoins);
+        currentCoinLabel.setBounds(22, 400, 90, 20);
+        jf.add(currentCoinLabel);
+
+        gettedCoinsLabel = new JLabel("");
+        gettedCoinsLabel.setBounds(22, 425, 90, 20);
+        jf.add(gettedCoinsLabel);
+
+        drawLabel = new DrawCoinLabel();
+        drawLabel.setBounds(0, 0, 100, 350);
+        jf.add(drawLabel);
+
+        helpLabel1 = new JLabel("Coin System:");
+        helpLabel1.setBounds(850, 350, 90, 20);
+        helpLabel2 = new JLabel("1 Paar: x2");
+        helpLabel2.setBounds(850, 375, 90, 20);
+        helpLabel3 = new JLabel("2 Paar: x3");
+        helpLabel3.setBounds(850, 400, 90, 20);
+        helpLabel4 = new JLabel("3 Gleiche: x4");
+        helpLabel4.setBounds(850, 425, 90, 20);
+        helpLabel5 = new JLabel("Full House: x5");
+        helpLabel5.setBounds(850, 450, 90, 20);
+        helpLabel6 = new JLabel("4 Gleiche: x6");
+        helpLabel6.setBounds(850, 475, 90, 20);
+        helpLabel7 = new JLabel("5 Gleiche: x12");
+        helpLabel7.setBounds(850, 500, 90, 20);
+        jf.add(helpLabel1);
+        jf.add(helpLabel2);
+        jf.add(helpLabel3);
+        jf.add(helpLabel4);
+        jf.add(helpLabel5);
+        jf.add(helpLabel6);
+        jf.add(helpLabel7);
 
         version = new JLabel("Version " + VERSION + " | Created by Lukas S. | lakinator.bplaced.net");
         version.setBounds(10, 550, 500, 20);
@@ -126,7 +173,7 @@ public class MeinFrame extends JFrame {
 
         while (true) {
             try {
-                Thread.sleep(50);
+                Thread.sleep(15);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -143,10 +190,62 @@ public class MeinFrame extends JFrame {
                 playButton.setText("Karten behalten");
             }
 
+            //Coinsystem
+
+            if (playButton.getText().equals("Karten behalten") || playButton.getText().equals("Karten tauschen")) {
+                if (gesetzteCoins == 5 || currentCoins == 0) {
+                    btnErhöhen.setEnabled(false);
+                } else {
+                    btnErhöhen.setEnabled(true);
+                }
+            } else {
+                btnErhöhen.setEnabled(false);
+            }
+
+            //Auswertung der gesetzten Coins
+
+            if (!playButton.getText().equals("Karten behalten") && !playButton.getText().equals("Karten tauschen") && !playButton.getText().equals("Los!") && !playButton.getText().equals("Auflösen") && !playButton.getText().equals("Der Computer wählt...") && !playButton.getText().equals("Karten werden ausgegeben")) {
+                if (coinAusgabe) {
+                    if (winner.equals(" > Computer gewinnt! <")) {
+                        coinAnimationLoose = true;
+                        gettedCoinsLabel.setText("-" + gesetzteCoins);
+                    } else if (winner.equals(" > Du gewinnst! <")) {
+                        coinAnimationWin = true;
+
+                        if (playerScore <= 12) {  //1 Paar
+                            currentCoins += gesetzteCoins*2;
+                            gettedCoinsLabel.setText("+" + gesetzteCoins*2);
+                        } else if (playerScore > 12 && playerScore <= 24) { //2 Paar
+                            currentCoins += gesetzteCoins*3;
+                            gettedCoinsLabel.setText("+" + gesetzteCoins*3);
+                        } else if (playerScore > 24 && playerScore <= 34) { //3 Gleiche
+                            currentCoins += gesetzteCoins*4;
+                            gettedCoinsLabel.setText("+" + gesetzteCoins*4);
+                        } else if (playerScore > 34 && playerScore <= 46) { //Full House
+                            currentCoins += gesetzteCoins*5;
+                            gettedCoinsLabel.setText("+" + gesetzteCoins*5);
+                        } else if (playerScore > 46 && playerScore <= 56) { //4 Gleiche
+                            currentCoins += gesetzteCoins*6;
+                            gettedCoinsLabel.setText("+" + gesetzteCoins*6);
+                        } else if (playerScore > 56 && playerScore <= 110) { //5 Gleiche
+                            currentCoins += gesetzteCoins*12;
+                            gettedCoinsLabel.setText("+" + gesetzteCoins*12);
+                        }
+
+                    } else if (winner.equals(" > Unentschieden! <")) {
+                        coinAnimationWin = true;
+                        currentCoins += gesetzteCoins;
+                        gettedCoinsLabel.setText("+" + gesetzteCoins);
+                    }
+                    currentCoinLabel.setText("Coins: " + currentCoins);
+                    coinAusgabe = false;
+                }
+            }
+
             //Computer KI
 
             if (playButton.getText().equals("Der Computer wählt...")) {
-                unnötigeVariable = currentScore(computerCards);
+                setCurrentCards = currentScore(computerCards);
                 change1 = true;
                 change2 = true;
                 change3 = true;
@@ -602,7 +701,7 @@ public class MeinFrame extends JFrame {
 
 
         if (wolken == 3) {
-            score += 24;
+            score += 25;
         }
         if (pilze == 3) {
             score += 26;
@@ -622,7 +721,7 @@ public class MeinFrame extends JFrame {
 
 
         if (wolken == 4) {
-            score += 46;
+            score += 47;
         }
         if (pilze == 4) {
             score += 48;
