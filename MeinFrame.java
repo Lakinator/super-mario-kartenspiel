@@ -155,10 +155,10 @@ public class MeinFrame extends JFrame {
 
                 System.out.println(currentScore(computerCards)); //Debug
 
-                if (wolken == 2) {
+                if (wolken >= 2) {
                     for (int i = 0; i < 5; i++) {
                         if (computerCards[i] == 1) {
-                            System.out.println("An Stelle " + i + " ist eine Wolke");
+                            System.out.println("An Stelle " + i + " ist eine Wolke"); //Debug
                             switch (i) {
                                 case 0:
                                     change1 = false;
@@ -180,10 +180,10 @@ public class MeinFrame extends JFrame {
                     }
                 }
 
-                if (pilze == 2) {
+                if (pilze >= 2) {
                     for (int i = 0; i < 5; i++) {
                         if (computerCards[i] == 2) {
-                            System.out.println("An Stelle " + i + " ist ein Pilz");
+                            System.out.println("An Stelle " + i + " ist ein Pilz"); //Debug
                             switch (i) {
                                 case 0:
                                     change1 = false;
@@ -205,10 +205,10 @@ public class MeinFrame extends JFrame {
                     }
                 }
 
-                if (blumen == 2) {
+                if (blumen >= 2) {
                     for (int i = 0; i < 5; i++) {
                         if (computerCards[i] == 3) {
-                            System.out.println("An Stelle " + i + " ist eine Blume");
+                            System.out.println("An Stelle " + i + " ist eine Blume"); //Debug
                             switch (i) {
                                 case 0:
                                     change1 = false;
@@ -230,10 +230,10 @@ public class MeinFrame extends JFrame {
                     }
                 }
 
-                if (luigis == 2) {
+                if (luigis >= 2) {
                     for (int i = 0; i < 5; i++) {
                         if (computerCards[i] == 4) {
-                            System.out.println("An Stelle " + i + " ist ein Luigi");
+                            System.out.println("An Stelle " + i + " ist ein Luigi"); //Debug
                             switch (i) {
                                 case 0:
                                     change1 = false;
@@ -255,10 +255,10 @@ public class MeinFrame extends JFrame {
                     }
                 }
 
-                if (marios == 2) {
+                if (marios >= 2) {
                     for (int i = 0; i < 5; i++) {
                         if (computerCards[i] == 5) {
-                            System.out.println("An Stelle " + i + " ist ein Mario");
+                            System.out.println("An Stelle " + i + " ist ein Mario"); //Debug
                             switch (i) {
                                 case 0:
                                     change1 = false;
@@ -280,10 +280,10 @@ public class MeinFrame extends JFrame {
                     }
                 }
 
-                if (sterne == 2) {
+                if (sterne >= 2) {
                     for (int i = 0; i < 5; i++) {
                         if (computerCards[i] == 6) {
-                            System.out.println("An Stelle " + i + " ist ein Stern");
+                            System.out.println("An Stelle " + i + " ist ein Stern"); //Debug
                             switch (i) {
                                 case 0:
                                     change1 = false;
@@ -313,7 +313,7 @@ public class MeinFrame extends JFrame {
 
                 if (change1) {
                     computerCards[0] = randomCard();
-                    System.out.println("Slot 1");
+                    System.out.println("Slot 1"); //Debug
 
                     computerBtn1.setBounds(100, 25, 125, 181);
 
@@ -328,7 +328,7 @@ public class MeinFrame extends JFrame {
                 }
                 if (change2) {
                     computerCards[1] = randomCard();
-                    System.out.println("Slot 2");
+                    System.out.println("Slot 2"); //Debug
 
                     computerBtn2.setBounds(250, 25, 125, 181);
 
@@ -343,7 +343,7 @@ public class MeinFrame extends JFrame {
                 }
                 if (change3) {
                     computerCards[2] = randomCard();
-                    System.out.println("Slot 3");
+                    System.out.println("Slot 3"); //Debug
 
                     computerBtn3.setBounds(400, 25, 125, 181);
 
@@ -358,7 +358,7 @@ public class MeinFrame extends JFrame {
                 }
                 if (change4) {
                     computerCards[3] = randomCard();
-                    System.out.println("Slot 4");
+                    System.out.println("Slot 4"); //Debug
 
                     computerBtn4.setBounds(550, 25, 125, 181);
 
@@ -373,7 +373,7 @@ public class MeinFrame extends JFrame {
                 }
                 if (change5) {
                     computerCards[4] = randomCard();
-                    System.out.println("Slot 5");
+                    System.out.println("Slot 5"); //Debug
 
                     computerBtn5.setBounds(700, 25, 125, 181);
 
