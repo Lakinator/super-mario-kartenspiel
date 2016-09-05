@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class MeinFrame extends JFrame {
 
-    public static final double VERSION = 1.4;
+    public static final double VERSION = 1.5;
 
     JFrame jf = new JFrame();
     public static boolean isBtn1Selected = false, isBtn2Selected = false, isBtn3Selected = false, isBtn4Selected = false, isBtn5Selected = false, gameStarted = false;
@@ -22,6 +22,7 @@ public class MeinFrame extends JFrame {
     public static JLabel currentCoinLabel, gettedCoinsLabel;
     JLabel drawLabel;
     JLabel helpLabel1, helpLabel2, helpLabel3, helpLabel4, helpLabel5, helpLabel6, helpLabel7;
+    JLabel helpLabelCards1, helpLabelCards2, helpLabelCards3, helpLabelCards4, helpLabelCards5, helpLabelCards6, helpLabelCards7;
     JLabel version;
     Icon normal = new ImageIcon(getClass().getResource("img/spielkarteNORMAL.png"));
     Icon wolke = new ImageIcon(getClass().getResource("img/spielkarteWOLKE.png"));
@@ -81,6 +82,28 @@ public class MeinFrame extends JFrame {
         drawLabel = new DrawCoinLabel();
         drawLabel.setBounds(0, 0, 100, 350);
         jf.add(drawLabel);
+
+        helpLabelCards1 = new JLabel("Karten System:");
+        helpLabelCards1.setBounds(850, 50, 90, 20);
+        helpLabelCards2 = new JLabel("1: Wolke");
+        helpLabelCards2.setBounds(850, 75, 90, 20);
+        helpLabelCards3 = new JLabel("2: Pilz");
+        helpLabelCards3.setBounds(850, 100, 90, 20);
+        helpLabelCards4 = new JLabel("3: Blume");
+        helpLabelCards4.setBounds(850, 125, 90, 20);
+        helpLabelCards5 = new JLabel("4: Luigi");
+        helpLabelCards5.setBounds(850, 150, 90, 20);
+        helpLabelCards6 = new JLabel("5: Mario");
+        helpLabelCards6.setBounds(850, 175, 90, 20);
+        helpLabelCards7 = new JLabel("6: Stern");
+        helpLabelCards7.setBounds(850, 200, 90, 20);
+        jf.add(helpLabelCards1);
+        jf.add(helpLabelCards2);
+        jf.add(helpLabelCards3);
+        jf.add(helpLabelCards4);
+        jf.add(helpLabelCards5);
+        jf.add(helpLabelCards6);
+        jf.add(helpLabelCards7);
 
         helpLabel1 = new JLabel("Coin System:");
         helpLabel1.setBounds(850, 350, 90, 20);
@@ -212,22 +235,22 @@ public class MeinFrame extends JFrame {
                     } else if (winner.equals(" > Du gewinnst! <")) {
                         coinAnimationWin = true;
 
-                        if (playerScore <= 12) {  //1 Paar
+                        if (playerScore <= 120 && playerScore >= 2) {  //1 Paar
                             currentCoins += gesetzteCoins*2;
                             gettedCoinsLabel.setText("+" + gesetzteCoins*2);
-                        } else if (playerScore > 12 && playerScore <= 24) { //2 Paar
+                        } else if (playerScore > 120 && playerScore <= 220) { //2 Paar
                             currentCoins += gesetzteCoins*3;
                             gettedCoinsLabel.setText("+" + gesetzteCoins*3);
-                        } else if (playerScore > 24 && playerScore <= 34) { //3 Gleiche
+                        } else if (playerScore > 794 && playerScore <= 800) { //3 Gleiche
                             currentCoins += gesetzteCoins*4;
                             gettedCoinsLabel.setText("+" + gesetzteCoins*4);
-                        } else if (playerScore > 34 && playerScore <= 46) { //Full House
+                        } else if (playerScore > 1000 && playerScore <= 6500) { //Full House
                             currentCoins += gesetzteCoins*5;
                             gettedCoinsLabel.setText("+" + gesetzteCoins*5);
-                        } else if (playerScore > 46 && playerScore <= 56) { //4 Gleiche
+                        } else if (playerScore > 18999 && playerScore <= 19010) { //4 Gleiche
                             currentCoins += gesetzteCoins*6;
                             gettedCoinsLabel.setText("+" + gesetzteCoins*6);
-                        } else if (playerScore > 56 && playerScore <= 110) { //5 Gleiche
+                        } else if (playerScore > 19999) { //5 Gleiche
                             currentCoins += gesetzteCoins*12;
                             gettedCoinsLabel.setText("+" + gesetzteCoins*12);
                         }
@@ -680,82 +703,101 @@ public class MeinFrame extends JFrame {
             }
         }
 
+
+        if (wolken == 3) {
+            score += 795;
+        }
+        if (pilze == 3) {
+            score += 796;
+        }
+        if (blumen == 3) {
+            score += 797;
+        }
+        if (luigis == 3) {
+            score += 798;
+        }
+        if (marios == 3) {
+            score += 799;
+        }
+        if (sterne == 3) {
+            score += 800;
+        }
+
+        //Full House
+        if (wolken == 3 || pilze == 3 || blumen == 3 || luigis == 3 || marios == 3 || sterne == 3) {
+            if (wolken == 2 || pilze == 2 || blumen == 2 || luigis == 2 || marios == 2 || sterne == 2) {
+                if (wolken == 3) {
+                    score = 1000;
+                } else if (pilze == 3) {
+                    score = 2000;
+                } else if (blumen == 3) {
+                    score = 3000;
+                } else if (luigis == 3) {
+                    score = 4000;
+                } else if (marios == 3) {
+                    score = 5000;
+                } else if (sterne == 3) {
+                    score = 6000;
+                }
+            }
+        }
+
         if (wolken == 2) {
             score += 2;
         }
         if (pilze == 2) {
-            score += 4;
+            score += 20;
         }
         if (blumen == 2) {
-            score += 6;
+            score += 45;
         }
         if (luigis == 2) {
-            score += 8;
+            score += 80;
         }
         if (marios == 2) {
-            score += 10;
+            score += 100;
         }
         if (sterne == 2) {
-            score += 12;
-        }
-
-
-        if (wolken == 3) {
-            score += 25;
-        }
-        if (pilze == 3) {
-            score += 26;
-        }
-        if (blumen == 3) {
-            score += 28;
-        }
-        if (luigis == 3) {
-            score += 30;
-        }
-        if (marios == 3) {
-            score += 32;
-        }
-        if (sterne == 3) {
-            score += 34;
+            score += 120;
         }
 
 
         if (wolken == 4) {
-            score += 47;
+            score += 19000;
         }
         if (pilze == 4) {
-            score += 48;
+            score += 19001;
         }
         if (blumen == 4) {
-            score += 50;
+            score += 19002;
         }
         if (luigis == 4) {
-            score += 52;
+            score += 19003;
         }
         if (marios == 4) {
-            score += 54;
+            score += 19004;
         }
         if (sterne == 4) {
-            score += 56;
+            score += 19005;
         }
 
         if (wolken == 5) {
-            score += 100;
+            score += 20000;
         }
         if (pilze == 5) {
-            score += 102;
+            score += 20001;
         }
         if (blumen == 5) {
-            score += 104;
+            score += 20002;
         }
         if (luigis == 5) {
-            score += 106;
+            score += 20003;
         }
         if (marios == 5) {
-            score += 108;
+            score += 20004;
         }
         if (sterne == 5) {
-            score += 110;
+            score += 20005;
         }
 
         return score;
