@@ -73,23 +73,23 @@ public class MeinButtonListener implements ActionListener {
             MeinFrame.playButton.setText("Karten werden ausgegeben");
             MeinFrame.gameStarted = true;
         } else if (e.getSource() == MeinFrame.playButton && MeinFrame.playButton.getText().equals("Auflösen")) {
-            String winner = "";
+            MeinFrame.winner = "";
 
             //Sieger wird ermittelt und ausgegeben
 
             if (MeinFrame.computerScore > MeinFrame.playerScore) {
-                winner = " > Computer gewinnt! <";
+                MeinFrame.winner = " > Computer gewinnt! <";
                 MeinFrame.computerSiege++;
             } else if (MeinFrame.playerScore > MeinFrame.computerScore) {
-                winner = " > Du gewinnst! <";
+                MeinFrame.winner = " > Du gewinnst! <";
                 MeinFrame.playerSiege++;
             } else if (MeinFrame.playerScore == MeinFrame.computerScore) {
-                winner = " > Unentschieden! <";
+                MeinFrame.winner = " > Unentschieden! <";
             }
 
             MeinFrame.playerSiegeLabel.setText("Deine Siege: " + MeinFrame.playerSiege);
             MeinFrame.computerSiegeLabel.setText("Computersiege: " + MeinFrame.computerSiege);
-            MeinFrame.playButton.setText(winner + "  [Klicken für ein neues Spiel!]");
+            MeinFrame.playButton.setText(MeinFrame.winner + "  [Klicken für ein neues Spiel!]");
 
             //Die Karten des Computers werden aufgedeckt
 
@@ -291,6 +291,12 @@ public class MeinButtonListener implements ActionListener {
 
         } else if (e.getSource() == MeinFrame.playButton && !MeinFrame.playButton.getText().equals("Karten tauschen") && !MeinFrame.playButton.getText().equals("Los!") && !MeinFrame.playButton.getText().equals("Karten behalten") && !MeinFrame.playButton.getText().equals("Auflösen")) {
             MeinFrame.playButton.setText("Los!");
+            MeinFrame.gettedCoinsLabel.setText("");
+            MeinFrame.btnErhöhen.setEnabled(false);
+            MeinFrame.gesetzteCoins = 1;
+            MeinFrame.coinAnimationWin = false;
+            MeinFrame.coinAnimationLoose = false;
+            MeinFrame.coinAusgabe = true;
 
             MeinFrame.computerBtn1.setIcon(normal);
             MeinFrame.computerBtn2.setIcon(normal);
@@ -304,5 +310,14 @@ public class MeinButtonListener implements ActionListener {
             MeinFrame.playerBtn4.setIcon(normal);
             MeinFrame.playerBtn5.setIcon(normal);
         }
+
+        //Erhöhen button (Coinsystem)
+
+        if (e.getSource() == MeinFrame.btnErhöhen && MeinFrame.btnErhöhen.isEnabled() &&  MeinFrame.currentCoins > 0) {
+            MeinFrame.gesetzteCoins++;
+            MeinFrame.currentCoins -= 1;
+            MeinFrame.currentCoinLabel.setText("Coins: " + MeinFrame.currentCoins);
+        }
+
     }
 }
