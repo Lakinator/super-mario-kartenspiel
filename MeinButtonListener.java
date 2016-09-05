@@ -297,6 +297,10 @@ public class MeinButtonListener implements ActionListener {
             MeinFrame.coinAnimationWin = false;
             MeinFrame.coinAnimationLoose = false;
             MeinFrame.coinAusgabe = true;
+            if (MeinFrame.currentCoins != 0) {
+                MeinFrame.currentCoins -= 1;
+            }
+            MeinFrame.currentCoinLabel.setText("Coins: " + MeinFrame.currentCoins);
 
             MeinFrame.computerBtn1.setIcon(normal);
             MeinFrame.computerBtn2.setIcon(normal);
@@ -313,7 +317,7 @@ public class MeinButtonListener implements ActionListener {
 
         //Erhöhen button (Coinsystem)
 
-        if (e.getSource() == MeinFrame.btnErhöhen && MeinFrame.btnErhöhen.isEnabled() &&  MeinFrame.currentCoins > 0) {
+        if (e.getSource() == MeinFrame.btnErhöhen && MeinFrame.btnErhöhen.isEnabled()) {
             MeinFrame.gesetzteCoins++;
             MeinFrame.currentCoins -= 1;
             MeinFrame.currentCoinLabel.setText("Coins: " + MeinFrame.currentCoins);
