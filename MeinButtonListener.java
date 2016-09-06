@@ -71,6 +71,11 @@ public class MeinButtonListener implements ActionListener {
 
         if (e.getSource() == MeinFrame.playButton && !MeinFrame.gameStarted && MeinFrame.playButton.getText().equals("Los!")) {
             MeinFrame.playButton.setText("Karten werden ausgegeben");
+            MeinFrame.gesetzteCoins = 1;
+            if (MeinFrame.currentCoins != 0) {
+                MeinFrame.currentCoins -= 1;
+            }
+            MeinFrame.currentCoinLabel.setText("Coins: " + MeinFrame.currentCoins);
             MeinFrame.gameStarted = true;
         } else if (e.getSource() == MeinFrame.playButton && MeinFrame.playButton.getText().equals("Auflösen")) {
             MeinFrame.winner = "";
@@ -293,13 +298,10 @@ public class MeinButtonListener implements ActionListener {
             MeinFrame.playButton.setText("Los!");
             MeinFrame.gettedCoinsLabel.setText("");
             MeinFrame.btnErhöhen.setEnabled(false);
-            MeinFrame.gesetzteCoins = 1;
             MeinFrame.coinAnimationWin = false;
             MeinFrame.coinAnimationLoose = false;
             MeinFrame.coinAusgabe = true;
-            if (MeinFrame.currentCoins != 0) {
-                MeinFrame.currentCoins -= 1;
-            }
+            MeinFrame.gesetzteCoins = 0;
             MeinFrame.currentCoinLabel.setText("Coins: " + MeinFrame.currentCoins);
 
             MeinFrame.computerBtn1.setIcon(normal);
