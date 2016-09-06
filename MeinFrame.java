@@ -33,8 +33,8 @@ public class MeinFrame extends JFrame {
     Icon stern = new ImageIcon(getClass().getResource("img/spielkarteSTERN.png"));
 
     public static String winner;
-    public static int currentCoins = 9;
-    public static int gesetzteCoins = 1;
+    public static int currentCoins = 10;
+    public static int gesetzteCoins = 0;
     public static int playerScore = 0, computerScore = 0;
     public static int playerSiege = 0, computerSiege = 0;
     public static int[] playerCards = new int[5];
