@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class MeinFrame extends JFrame {
 
-    public static final double VERSION = 1.5;
+    public static final String VERSION = "1.5.2";
 
     JFrame jf = new JFrame();
     public static boolean isBtn1Selected = false, isBtn2Selected = false, isBtn3Selected = false, isBtn4Selected = false, isBtn5Selected = false, gameStarted = false;
@@ -42,6 +42,7 @@ public class MeinFrame extends JFrame {
 
     //Temporäre Variablen
     int setCurrentCards = 0;
+    int paare = 0;
     int score = 0, wolken = 0, pilze = 0, blumen = 0, luigis = 0, marios = 0, sterne = 0;
     boolean change1 = true, change2 = true, change3 = true, change4 = true, change5 = true;
 
@@ -672,6 +673,7 @@ public class MeinFrame extends JFrame {
     }
 
     public int currentScore(int[] cards) {
+        paare = 0;
         score = 0;
         wolken = 0;
         pilze = 0;
@@ -703,6 +705,31 @@ public class MeinFrame extends JFrame {
             }
         }
 
+        if (wolken == 2) {
+            score += 2;
+            paare++;
+        }
+        if (pilze == 2) {
+            score += 20;
+            paare++;
+        }
+        if (blumen == 2) {
+            score += 45;
+            paare++;
+        }
+        if (luigis == 2) {
+            score += 80;
+            paare++;
+        }
+        if (marios == 2) {
+            score += 100;
+            paare++;
+        }
+        if (sterne == 2) {
+            score += 120;
+            paare++;
+        }
+
 
         if (wolken == 3) {
             score += 795;
@@ -723,9 +750,121 @@ public class MeinFrame extends JFrame {
             score += 800;
         }
 
+        //2 Paare --> Das höhere Paar der beiden zählt und das kleiner Paar wird hinzugerechnet, falls die ersten beiden gleich sind
+        if (paare == 2) {
+            if (wolken == 2) {
+                score = 300;
+                if (pilze == 2) {
+                    score += 2;
+                }
+                if (blumen == 2) {
+                    score += 3;
+                }
+                if (luigis == 2) {
+                    score += 4;
+                }
+                if (marios == 2) {
+                    score += 5;
+                }
+                if (sterne == 2) {
+                    score += 6;
+                }
+            }
+            if (pilze == 2) {
+                score = 310;
+                if (wolken == 2) {
+                    score += 1;
+                }
+                if (blumen == 2) {
+                    score += 3;
+                }
+                if (luigis == 2) {
+                    score += 4;
+                }
+                if (marios == 2) {
+                    score += 5;
+                }
+                if (sterne == 2) {
+                    score += 6;
+                }
+            }
+            if (blumen == 2) {
+                score = 320;
+                if (wolken == 2) {
+                    score += 1;
+                }
+                if (pilze == 2) {
+                    score += 2;
+                }
+                if (luigis == 2) {
+                    score += 4;
+                }
+                if (marios == 2) {
+                    score += 5;
+                }
+                if (sterne == 2) {
+                    score += 6;
+                }
+            }
+            if (luigis == 2) {
+                score = 330;
+                if (wolken == 2) {
+                    score += 1;
+                }
+                if (pilze == 2) {
+                    score += 2;
+                }
+                if (blumen == 2) {
+                    score += 3;
+                }
+                if (marios == 2) {
+                    score += 5;
+                }
+                if (sterne == 2) {
+                    score += 6;
+                }
+            }
+            if (marios == 2) {
+                score = 340;
+                if (wolken == 2) {
+                    score += 1;
+                }
+                if (pilze == 2) {
+                    score += 2;
+                }
+                if (blumen == 2) {
+                    score += 3;
+                }
+                if (luigis == 2) {
+                    score += 4;
+                }
+                if (sterne == 2) {
+                    score += 6;
+                }
+            }
+            if (sterne == 2) {
+                score = 350;
+                if (wolken == 2) {
+                    score += 1;
+                }
+                if (pilze == 2) {
+                    score += 2;
+                }
+                if (blumen == 2) {
+                    score += 3;
+                }
+                if (luigis == 2) {
+                    score += 4;
+                }
+                if (marios == 2) {
+                    score += 5;
+                }
+            }
+        }
+
         //Full House
         if (wolken == 3 || pilze == 3 || blumen == 3 || luigis == 3 || marios == 3 || sterne == 3) {
-            if (wolken == 2 || pilze == 2 || blumen == 2 || luigis == 2 || marios == 2 || sterne == 2) {
+            if (paare == 1) {
                 if (wolken == 3) {
                     score = 1000;
                 } else if (pilze == 3) {
@@ -739,26 +878,26 @@ public class MeinFrame extends JFrame {
                 } else if (sterne == 3) {
                     score = 6000;
                 }
-            }
-        }
 
-        if (wolken == 2) {
-            score += 2;
-        }
-        if (pilze == 2) {
-            score += 20;
-        }
-        if (blumen == 2) {
-            score += 45;
-        }
-        if (luigis == 2) {
-            score += 80;
-        }
-        if (marios == 2) {
-            score += 100;
-        }
-        if (sterne == 2) {
-            score += 120;
+                if (wolken == 2) {
+                    score += 2;
+                }
+                if (pilze == 2) {
+                    score += 20;
+                }
+                if (blumen == 2) {
+                    score += 45;
+                }
+                if (luigis == 2) {
+                    score += 80;
+                }
+                if (marios == 2) {
+                    score += 100;
+                }
+                if (sterne == 2) {
+                    score += 120;
+                }
+            }
         }
 
 
