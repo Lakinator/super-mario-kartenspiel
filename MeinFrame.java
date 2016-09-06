@@ -239,7 +239,7 @@ public class MeinFrame extends JFrame {
                         if (playerScore <= 120 && playerScore >= 2) {  //1 Paar
                             currentCoins += gesetzteCoins*2;
                             gettedCoinsLabel.setText("+" + gesetzteCoins*2);
-                        } else if (playerScore > 120 && playerScore <= 220) { //2 Paar
+                        } else if (playerScore > 300 && playerScore <= 400) { //2 Paar
                             currentCoins += gesetzteCoins*3;
                             gettedCoinsLabel.setText("+" + gesetzteCoins*3);
                         } else if (playerScore > 794 && playerScore <= 800) { //3 Gleiche
