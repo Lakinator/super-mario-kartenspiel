@@ -10,7 +10,6 @@ public class MeinFrame extends JFrame {
 
     public static final String VERSION = "1.5.2";
 
-    JFrame jf = new JFrame();
     public static boolean isBtn1Selected = false, isBtn2Selected = false, isBtn3Selected = false, isBtn4Selected = false, isBtn5Selected = false, gameStarted = false;
     public static boolean isSelectable = false;
     public static boolean coinAnimationWin = false, coinAnimationLoose = false, coinAusgabe = true;
@@ -47,42 +46,42 @@ public class MeinFrame extends JFrame {
     boolean change1 = true, change2 = true, change3 = true, change4 = true, change5 = true;
 
     public MeinFrame() {
-        jf.setLayout(null);
-        jf.setSize(950, 600);
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jf.setTitle("Super Mario Kartenspiel");
-        jf.setLocationRelativeTo(null);
-        jf.setResizable(false);
+        setLayout(null);
+        setSize(950, 600);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Super Mario Kartenspiel");
+        setLocationRelativeTo(null);
+        setResizable(false);
 
         playButton = new JButton("Los!");
         playButton.setBounds(270, 270, 380, 40);
         playButton.addActionListener(new MeinButtonListener());
-        jf.add(playButton);
+        add(playButton);
 
         playerSiegeLabel = new JLabel("Deine Siege: " + playerSiege);
         playerSiegeLabel.setBounds(720, 310, 200, 20);
-        jf.add(playerSiegeLabel);
+        add(playerSiegeLabel);
 
         computerSiegeLabel = new JLabel("Computersiege: " + computerSiege);
         computerSiegeLabel.setBounds(110, 250, 200, 20);
-        jf.add(computerSiegeLabel);
+        add(computerSiegeLabel);
 
         btnErhöhen = new JButton("Erhöhen!");
         btnErhöhen.setBounds(5, 350, 90, 50);
         btnErhöhen.addActionListener(new MeinButtonListener());
-        jf.add(btnErhöhen);
+        add(btnErhöhen);
 
         currentCoinLabel = new JLabel("Coins: " + currentCoins);
         currentCoinLabel.setBounds(22, 400, 90, 20);
-        jf.add(currentCoinLabel);
+        add(currentCoinLabel);
 
         gettedCoinsLabel = new JLabel("");
         gettedCoinsLabel.setBounds(22, 425, 90, 20);
-        jf.add(gettedCoinsLabel);
+        add(gettedCoinsLabel);
 
         drawLabel = new DrawCoinLabel();
         drawLabel.setBounds(0, 0, 100, 350);
-        jf.add(drawLabel);
+        add(drawLabel);
 
         helpLabelCards1 = new JLabel("Karten System:");
         helpLabelCards1.setBounds(850, 50, 90, 20);
@@ -98,13 +97,13 @@ public class MeinFrame extends JFrame {
         helpLabelCards6.setBounds(850, 175, 90, 20);
         helpLabelCards7 = new JLabel("6: Stern");
         helpLabelCards7.setBounds(850, 200, 90, 20);
-        jf.add(helpLabelCards1);
-        jf.add(helpLabelCards2);
-        jf.add(helpLabelCards3);
-        jf.add(helpLabelCards4);
-        jf.add(helpLabelCards5);
-        jf.add(helpLabelCards6);
-        jf.add(helpLabelCards7);
+        add(helpLabelCards1);
+        add(helpLabelCards2);
+        add(helpLabelCards3);
+        add(helpLabelCards4);
+        add(helpLabelCards5);
+        add(helpLabelCards6);
+        add(helpLabelCards7);
 
         helpLabel1 = new JLabel("Coin System:");
         helpLabel1.setBounds(850, 350, 90, 20);
@@ -120,17 +119,17 @@ public class MeinFrame extends JFrame {
         helpLabel6.setBounds(850, 475, 90, 20);
         helpLabel7 = new JLabel("5 Gleiche: x12");
         helpLabel7.setBounds(850, 500, 90, 20);
-        jf.add(helpLabel1);
-        jf.add(helpLabel2);
-        jf.add(helpLabel3);
-        jf.add(helpLabel4);
-        jf.add(helpLabel5);
-        jf.add(helpLabel6);
-        jf.add(helpLabel7);
+        add(helpLabel1);
+        add(helpLabel2);
+        add(helpLabel3);
+        add(helpLabel4);
+        add(helpLabel5);
+        add(helpLabel6);
+        add(helpLabel7);
 
         version = new JLabel("Version " + VERSION + " | Created by Lukas S. | lakinator.bplaced.net");
         version.setBounds(10, 550, 500, 20);
-        jf.add(version);
+        add(version);
 
         //PlayerButtons
 
@@ -138,60 +137,60 @@ public class MeinFrame extends JFrame {
         playerBtn1.setBounds(100, 350, 125, 181);
         playerBtn1.setIcon(normal);
         playerBtn1.addActionListener(new MeinButtonListener());
-        jf.add(playerBtn1);
+        add(playerBtn1);
 
         playerBtn2 = new JButton();
         playerBtn2.setBounds(250, 350, 125, 181);
         playerBtn2.setIcon(normal);
         playerBtn2.addActionListener(new MeinButtonListener());
-        jf.add(playerBtn2);
+        add(playerBtn2);
 
         playerBtn3 = new JButton();
         playerBtn3.setBounds(400, 350, 125, 181);
         playerBtn3.setIcon(normal);
         playerBtn3.addActionListener(new MeinButtonListener());
-        jf.add(playerBtn3);
+        add(playerBtn3);
 
         playerBtn4 = new JButton();
         playerBtn4.setBounds(550, 350, 125, 181);
         playerBtn4.setIcon(normal);
         playerBtn4.addActionListener(new MeinButtonListener());
-        jf.add(playerBtn4);
+        add(playerBtn4);
 
         playerBtn5 = new JButton();
         playerBtn5.setBounds(700, 350, 125, 181);
         playerBtn5.setIcon(normal);
         playerBtn5.addActionListener(new MeinButtonListener());
-        jf.add(playerBtn5);
+        add(playerBtn5);
 
         //ComputerButtons
 
         computerBtn1 = new JButton();
         computerBtn1.setBounds(100, 50, 125, 181);
         computerBtn1.setIcon(normal);
-        jf.add(computerBtn1);
+        add(computerBtn1);
 
         computerBtn2 = new JButton();
         computerBtn2.setBounds(250, 50, 125, 181);
         computerBtn2.setIcon(normal);
-        jf.add(computerBtn2);
+        add(computerBtn2);
 
         computerBtn3 = new JButton();
         computerBtn3.setBounds(400, 50, 125, 181);
         computerBtn3.setIcon(normal);
-        jf.add(computerBtn3);
+        add(computerBtn3);
 
         computerBtn4 = new JButton();
         computerBtn4.setBounds(550, 50, 125, 181);
         computerBtn4.setIcon(normal);
-        jf.add(computerBtn4);
+        add(computerBtn4);
 
         computerBtn5 = new JButton();
         computerBtn5.setBounds(700, 50, 125, 181);
         computerBtn5.setIcon(normal);
-        jf.add(computerBtn5);
+        add(computerBtn5);
 
-        jf.setVisible(true);
+        setVisible(true);
 
         //Hauptschleife des Spiels
 
