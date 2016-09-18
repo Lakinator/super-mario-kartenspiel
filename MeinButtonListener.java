@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -315,6 +316,13 @@ public class MeinButtonListener implements ActionListener {
             MeinFrame.playerBtn3.setIcon(normal);
             MeinFrame.playerBtn4.setIcon(normal);
             MeinFrame.playerBtn5.setIcon(normal);
+
+            MeinFrame.helpLabel2.setForeground(Color.DARK_GRAY);
+            MeinFrame.helpLabel3.setForeground(Color.DARK_GRAY);
+            MeinFrame.helpLabel4.setForeground(Color.DARK_GRAY);
+            MeinFrame.helpLabel5.setForeground(Color.DARK_GRAY);
+            MeinFrame.helpLabel6.setForeground(Color.DARK_GRAY);
+            MeinFrame.helpLabel7.setForeground(Color.DARK_GRAY);
         }
 
         //Erhöhen button (Coinsystem)
