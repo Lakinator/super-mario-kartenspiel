@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Random;
 
 public class MeinFrame extends JFrame {
 
-    public static final String VERSION = "1.5.2";
+    public static final String VERSION = "1.5.3";
 
     public static boolean isBtn1Selected = false, isBtn2Selected = false, isBtn3Selected = false, isBtn4Selected = false, isBtn5Selected = false, gameStarted = false;
     public static boolean isSelectable = false;
@@ -20,7 +21,7 @@ public class MeinFrame extends JFrame {
     public static JButton btnErhöhen;
     public static JLabel currentCoinLabel, gettedCoinsLabel;
     JLabel drawLabel;
-    JLabel helpLabel1, helpLabel2, helpLabel3, helpLabel4, helpLabel5, helpLabel6, helpLabel7;
+    static JLabel helpLabel1, helpLabel2, helpLabel3, helpLabel4, helpLabel5, helpLabel6, helpLabel7;
     JLabel helpLabelCards1, helpLabelCards2, helpLabelCards3, helpLabelCards4, helpLabelCards5, helpLabelCards6, helpLabelCards7;
     JLabel version;
     Icon normal = new ImageIcon(getClass().getResource("img/spielkarteNORMAL.png"));
@@ -260,6 +261,87 @@ public class MeinFrame extends JFrame {
                         currentCoins += gesetzteCoins;
                         gettedCoinsLabel.setText("+" + gesetzteCoins);
                     }
+
+                    //Farben des Systems links an der Seite
+                    if (winner.equals(" > Unentschieden! <")) {
+                        if (playerScore <= 120 && playerScore >= 2) {  //1 Paar
+                            helpLabel2.setForeground(Color.BLUE);
+                        } else if (playerScore > 300 && playerScore <= 400) { //2 Paar
+                            helpLabel3.setForeground(Color.BLUE);
+                        } else if (playerScore > 794 && playerScore <= 800) { //3 Gleiche
+                            helpLabel4.setForeground(Color.BLUE);
+                        } else if (playerScore > 1000 && playerScore <= 6500) { //Full House
+                            helpLabel5.setForeground(Color.BLUE);
+                        } else if (playerScore > 18999 && playerScore <= 19010) { //4 Gleiche
+                            helpLabel6.setForeground(Color.BLUE);
+                        } else if (playerScore > 19999) { //5 Gleiche
+                            helpLabel7.setForeground(Color.BLUE);
+                        }
+                    } else {
+                        if (playerScore > computerScore) {
+                            if (playerScore <= 120 && playerScore >= 2) {  //1 Paar
+                                helpLabel2.setForeground(Color.GREEN);
+                            } else if (playerScore > 300 && playerScore <= 400) { //2 Paar
+                                helpLabel3.setForeground(Color.GREEN);
+                            } else if (playerScore > 794 && playerScore <= 800) { //3 Gleiche
+                                helpLabel4.setForeground(Color.GREEN);
+                            } else if (playerScore > 1000 && playerScore <= 6500) { //Full House
+                                helpLabel5.setForeground(Color.GREEN);
+                            } else if (playerScore > 18999 && playerScore <= 19010) { //4 Gleiche
+                                helpLabel6.setForeground(Color.GREEN);
+                            } else if (playerScore > 19999) { //5 Gleiche
+                                helpLabel7.setForeground(Color.GREEN);
+                            }
+
+                            if (computerScore <= 120 && computerScore >= 2) {  //1 Paar
+                                helpLabel2.setForeground(Color.RED);
+                            } else if (computerScore > 300 && computerScore <= 400) { //2 Paar
+                                helpLabel3.setForeground(Color.RED);
+                            } else if (computerScore > 794 && computerScore <= 800) { //3 Gleiche
+                                helpLabel4.setForeground(Color.RED);
+                            } else if (computerScore > 1000 && computerScore <= 6500) { //Full House
+                                helpLabel5.setForeground(Color.RED);
+                            } else if (computerScore > 18999 && computerScore <= 19010) { //4 Gleiche
+                                helpLabel6.setForeground(Color.RED);
+                            } else if (computerScore > 19999) { //5 Gleiche
+                                helpLabel7.setForeground(Color.RED);
+                            }
+                        } else if (playerScore < computerScore) {
+
+                            if (playerScore <= 120 && playerScore >= 2) {  //1 Paar
+                                helpLabel2.setForeground(Color.RED);
+                            } else if (playerScore > 300 && playerScore <= 400) { //2 Paar
+                                helpLabel3.setForeground(Color.RED);
+                            } else if (playerScore > 794 && playerScore <= 800) { //3 Gleiche
+                                helpLabel4.setForeground(Color.RED);
+                            } else if (playerScore > 1000 && playerScore <= 6500) { //Full House
+                                helpLabel5.setForeground(Color.RED);
+                            } else if (playerScore > 18999 && playerScore <= 19010) { //4 Gleiche
+                                helpLabel6.setForeground(Color.RED);
+                            } else if (playerScore > 19999) { //5 Gleiche
+                                helpLabel7.setForeground(Color.RED);
+                            }
+
+                            if (computerScore <= 120 && computerScore >= 2) {  //1 Paar
+                                helpLabel2.setForeground(Color.GREEN);
+                            } else if (computerScore > 300 && computerScore <= 400) { //2 Paar
+                                helpLabel3.setForeground(Color.GREEN);
+                            } else if (computerScore > 794 && computerScore <= 800) { //3 Gleiche
+                                helpLabel4.setForeground(Color.GREEN);
+                            } else if (computerScore > 1000 && computerScore <= 6500) { //Full House
+                                helpLabel5.setForeground(Color.GREEN);
+                            } else if (computerScore > 18999 && computerScore <= 19010) { //4 Gleiche
+                                helpLabel6.setForeground(Color.GREEN);
+                            } else if (computerScore > 19999) { //5 Gleiche
+                                helpLabel7.setForeground(Color.GREEN);
+                            }
+                        }
+
+                    }
+
+                    System.out.println("Player Score: " + playerScore); //Debug
+                    System.out.println("Computer Score: " + computerScore); //Debug
+
                     currentCoinLabel.setText("Coins: " + currentCoins);
                     coinAusgabe = false;
                 }
@@ -275,7 +357,7 @@ public class MeinFrame extends JFrame {
                 change4 = true;
                 change5 = true;
 
-                System.out.println(currentScore(computerCards)); //Debug
+                System.out.println("ComputerScore vor Kartenwechsel: " + currentScore(computerCards)); //Debug
 
                 if (wolken >= 2) {
                     for (int i = 0; i < 5; i++) {
@@ -435,7 +517,7 @@ public class MeinFrame extends JFrame {
 
                 if (change1) {
                     computerCards[0] = randomCard();
-                    System.out.println("Slot 1"); //Debug
+                    System.out.println("Slot 1 getauscht"); //Debug
 
                     computerBtn1.setBounds(100, 25, 125, 181);
 
@@ -450,7 +532,7 @@ public class MeinFrame extends JFrame {
                 }
                 if (change2) {
                     computerCards[1] = randomCard();
-                    System.out.println("Slot 2"); //Debug
+                    System.out.println("Slot 2 getauscht"); //Debug
 
                     computerBtn2.setBounds(250, 25, 125, 181);
 
@@ -465,7 +547,7 @@ public class MeinFrame extends JFrame {
                 }
                 if (change3) {
                     computerCards[2] = randomCard();
-                    System.out.println("Slot 3"); //Debug
+                    System.out.println("Slot 3 getauscht"); //Debug
 
                     computerBtn3.setBounds(400, 25, 125, 181);
 
@@ -480,7 +562,7 @@ public class MeinFrame extends JFrame {
                 }
                 if (change4) {
                     computerCards[3] = randomCard();
-                    System.out.println("Slot 4"); //Debug
+                    System.out.println("Slot 4 getauscht"); //Debug
 
                     computerBtn4.setBounds(550, 25, 125, 181);
 
@@ -495,7 +577,7 @@ public class MeinFrame extends JFrame {
                 }
                 if (change5) {
                     computerCards[4] = randomCard();
-                    System.out.println("Slot 5"); //Debug
+                    System.out.println("Slot 5 getauscht"); //Debug
 
                     computerBtn5.setBounds(700, 25, 125, 181);
 
@@ -509,7 +591,7 @@ public class MeinFrame extends JFrame {
 
                 }
 
-                System.out.println(currentScore(computerCards)); //Debug
+                System.out.println("ComputerScore nach Kartenwechsel: " + currentScore(computerCards)); //Debug
 
                 playButton.setEnabled(true);
                 playButton.setText("Auflösen");
@@ -518,9 +600,9 @@ public class MeinFrame extends JFrame {
             //Der Score wird gesetzt
 
             if (playButton.getText().equals("Auflösen")) {
-                System.out.println("PlayerCards Score: " + currentScore(playerCards)); //Debug
+                //System.out.println("PlayerCards Score: " + currentScore(playerCards)); //Debug
                 playerScore = currentScore(playerCards);
-                System.out.println("ComputerCards Score: " + currentScore(computerCards)); //Debug
+                //System.out.println("ComputerCards Score: " + currentScore(computerCards)); //Debug
                 computerScore = currentScore(computerCards);
             }
 
