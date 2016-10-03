@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class MeinFrame extends JFrame {
 
-    public static final String VERSION = "1.5.3";
+    public static final String VERSION = "1.5.4";
 
     public static boolean isBtn1Selected = false, isBtn2Selected = false, isBtn3Selected = false, isBtn4Selected = false, isBtn5Selected = false, gameStarted = false;
     public static boolean isSelectable = false;
@@ -31,6 +31,7 @@ public class MeinFrame extends JFrame {
     Icon luigi = new ImageIcon(getClass().getResource("img/spielkarteLUIGI.png"));
     Icon mario = new ImageIcon(getClass().getResource("img/spielkarteMARIO.png"));
     Icon stern = new ImageIcon(getClass().getResource("img/spielkarteSTERN.png"));
+
 
     public static String winner;
     public static int currentCoins = 10;
@@ -138,30 +139,45 @@ public class MeinFrame extends JFrame {
         playerBtn1.setBounds(100, 350, 125, 181);
         playerBtn1.setIcon(normal);
         playerBtn1.addActionListener(new MeinButtonListener());
+        playerBtn1.setBorder(null);
+        playerBtn1.setFocusPainted(false);
+        playerBtn1.setContentAreaFilled(false);
         add(playerBtn1);
 
         playerBtn2 = new JButton();
         playerBtn2.setBounds(250, 350, 125, 181);
         playerBtn2.setIcon(normal);
         playerBtn2.addActionListener(new MeinButtonListener());
+        playerBtn2.setBorder(null);
+        playerBtn2.setFocusPainted(false);
+        playerBtn2.setContentAreaFilled(false);
         add(playerBtn2);
 
         playerBtn3 = new JButton();
         playerBtn3.setBounds(400, 350, 125, 181);
         playerBtn3.setIcon(normal);
         playerBtn3.addActionListener(new MeinButtonListener());
+        playerBtn3.setBorder(null);
+        playerBtn3.setFocusPainted(false);
+        playerBtn3.setContentAreaFilled(false);
         add(playerBtn3);
 
         playerBtn4 = new JButton();
         playerBtn4.setBounds(550, 350, 125, 181);
         playerBtn4.setIcon(normal);
         playerBtn4.addActionListener(new MeinButtonListener());
+        playerBtn4.setBorder(null);
+        playerBtn4.setFocusPainted(false);
+        playerBtn4.setContentAreaFilled(false);
         add(playerBtn4);
 
         playerBtn5 = new JButton();
         playerBtn5.setBounds(700, 350, 125, 181);
         playerBtn5.setIcon(normal);
         playerBtn5.addActionListener(new MeinButtonListener());
+        playerBtn5.setBorder(null);
+        playerBtn5.setFocusPainted(false);
+        playerBtn5.setContentAreaFilled(false);
         add(playerBtn5);
 
         //ComputerButtons
@@ -169,26 +185,41 @@ public class MeinFrame extends JFrame {
         computerBtn1 = new JButton();
         computerBtn1.setBounds(100, 50, 125, 181);
         computerBtn1.setIcon(normal);
+        computerBtn1.setBorder(null);
+        computerBtn1.setFocusPainted(false);
+        computerBtn1.setContentAreaFilled(false);
         add(computerBtn1);
 
         computerBtn2 = new JButton();
         computerBtn2.setBounds(250, 50, 125, 181);
         computerBtn2.setIcon(normal);
+        computerBtn2.setBorder(null);
+        computerBtn2.setFocusPainted(false);
+        computerBtn2.setContentAreaFilled(false);
         add(computerBtn2);
 
         computerBtn3 = new JButton();
         computerBtn3.setBounds(400, 50, 125, 181);
         computerBtn3.setIcon(normal);
+        computerBtn3.setBorder(null);
+        computerBtn3.setFocusPainted(false);
+        computerBtn3.setContentAreaFilled(false);
         add(computerBtn3);
 
         computerBtn4 = new JButton();
         computerBtn4.setBounds(550, 50, 125, 181);
         computerBtn4.setIcon(normal);
+        computerBtn4.setBorder(null);
+        computerBtn4.setFocusPainted(false);
+        computerBtn4.setContentAreaFilled(false);
         add(computerBtn4);
 
         computerBtn5 = new JButton();
         computerBtn5.setBounds(700, 50, 125, 181);
         computerBtn5.setIcon(normal);
+        computerBtn5.setBorder(null);
+        computerBtn5.setFocusPainted(false);
+        computerBtn5.setContentAreaFilled(false);
         add(computerBtn5);
 
         setVisible(true);
