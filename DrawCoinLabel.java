@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 
 public class DrawCoinLabel extends JLabel {
-    BufferedImage coinImg;
+    static BufferedImage coinImg;
     int coin1Y = 280, coin2Y = 210, coin3Y = 140, coin4Y = 70, coin5Y = 0;
 
     public DrawCoinLabel() {
@@ -30,19 +30,19 @@ public class DrawCoinLabel extends JLabel {
 
         //Coinanimationen
 
-        if (MeinFrame.coinAnimationWin) {
+        if (GUI.coinAnimationWin) {
             coin1Y += 3;
             coin2Y += 5;
             coin3Y += 7;
             coin4Y += 9;
             coin5Y += 11;
-        } else if (MeinFrame.coinAnimationLoose) {
+        } else if (GUI.coinAnimationLoose) {
             coin1Y -= 11;
             coin2Y -= 9;
             coin3Y -= 7;
             coin4Y -= 5;
             coin5Y -= 3;
-        } else if (!MeinFrame.coinAnimationWin || !MeinFrame.coinAnimationLoose) {
+        } else if (!GUI.coinAnimationWin || !GUI.coinAnimationLoose) {
             coin1Y = 280;
             coin2Y = 210;
             coin3Y = 140;
@@ -52,31 +52,27 @@ public class DrawCoinLabel extends JLabel {
 
         //Coins darstellen
 
-        if (MeinFrame.gesetzteCoins >= 1) {
+        if (GUI.gesetzteCoins >= 1) {
             g.drawImage(coinImg, 30, coin1Y, null);
         }
 
-        if (MeinFrame.gesetzteCoins >= 2) {
+        if (GUI.gesetzteCoins >= 2) {
             g.drawImage(coinImg, 30, coin2Y, null);
         }
 
-        if (MeinFrame.gesetzteCoins >= 3) {
+        if (GUI.gesetzteCoins >= 3) {
             g.drawImage(coinImg, 30, coin3Y, null);
         }
 
-        if (MeinFrame.gesetzteCoins >= 4) {
+        if (GUI.gesetzteCoins >= 4) {
             g.drawImage(coinImg, 30, coin4Y, null);
         }
 
-        if (MeinFrame.gesetzteCoins >= 5) {
+        if (GUI.gesetzteCoins >= 5) {
             g.drawImage(coinImg, 30, coin5Y, null);
         }
 
-        try {
-            Thread.sleep(15);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Funktion.waitMillis(15);
 
         repaint();
 
