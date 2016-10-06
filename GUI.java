@@ -45,6 +45,9 @@ public class GUI extends JFrame {
         playButton = new JButton("Los!");
         playButton.setBounds(270, 270, 380, 40);
         playButton.addActionListener(new ButtonListener());
+        playButton.setBackground(new Color(60, 70, 86));
+        playButton.setForeground(Color.WHITE);
+        playButton.setFocusPainted(false);
         add(playButton);
 
         playerSiegeLabel = new JLabel("Deine Siege: " + Var.playerSiege);
@@ -58,6 +61,9 @@ public class GUI extends JFrame {
         btnErhöhen = new JButton("Erhöhen!");
         btnErhöhen.setBounds(5, 350, 90, 50);
         btnErhöhen.addActionListener(new ButtonListener());
+        btnErhöhen.setBackground(new Color(60, 70, 86));
+        btnErhöhen.setForeground(Color.WHITE);
+        btnErhöhen.setFocusPainted(false);
         add(btnErhöhen);
 
         currentCoinLabel = new JLabel("Coins: " + currentCoins);
